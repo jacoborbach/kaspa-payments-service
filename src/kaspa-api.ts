@@ -35,7 +35,7 @@ export class KaspaApiClient {
         };
       }
 
-      const data = await response.json();
+      const data = await response.json() as { balance?: number };
 
       if (data.balance !== undefined) {
         const balanceSompi = data.balance;
@@ -81,15 +81,16 @@ export class KaspaApiClient {
         return null;
       }
 
-      const data = await response.json();
+      const data = await response.json() as KaspaTransaction[] | { transactions?: KaspaTransaction[] };
 
       // Handle different response formats
       if (Array.isArray(data)) {
-        return data;
+        return data as KaspaTransaction[];
       }
 
-      if (data.transactions && Array.isArray(data.transactions)) {
-        return data.transactions;
+      const dataObj = data as { transactions?: KaspaTransaction[] };
+      if (dataObj.transactions && Array.isArray(dataObj.transactions)) {
+        return dataObj.transactions;
       }
 
       return null;

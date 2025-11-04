@@ -56,10 +56,10 @@ export class ExchangeRateService {
         };
       }
 
-      const data = await response.json();
+      const data = await response.json() as { kaspa?: { usd?: number | string } };
 
       if (data.kaspa && data.kaspa.usd) {
-        const rate = parseFloat(data.kaspa.usd);
+        const rate = parseFloat(String(data.kaspa.usd));
 
         // Update cache
         rateCache = {
