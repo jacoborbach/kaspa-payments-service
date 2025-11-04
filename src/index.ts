@@ -110,7 +110,7 @@ app.post('/api/webhook', async (req: Request, res: Response) => {
   }
 });
 
-// Start server
+// Start server (for local development)
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 Kaspa Payments Service running on port ${PORT}`);
@@ -118,5 +118,6 @@ if (require.main === module) {
   });
 }
 
+// Export for Vercel serverless
 export default app;
 
