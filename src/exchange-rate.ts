@@ -4,7 +4,6 @@
  * Extracted from WooCommerce plugin's get_kas_rate() method
  */
 
-import fetch from 'node-fetch';
 import { ExchangeRateResponse } from './types';
 
 const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd';
@@ -36,8 +35,7 @@ export class ExchangeRateService {
         headers: {
           'Accept': 'application/json',
         },
-        timeout: 10000,
-      } as any);
+      });
 
       if (!response.ok) {
         // Return cached rate if available, otherwise error

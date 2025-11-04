@@ -3,7 +3,6 @@
  * Extracted from WooCommerce plugin's transaction polling logic
  */
 
-import fetch from 'node-fetch';
 import { PaymentCheckResponse, BalanceResponse, KaspaTransaction } from './types';
 
 const API_BASE_URL = 'https://api.kaspa.org';
@@ -24,8 +23,7 @@ export class KaspaApiClient {
           'User-Agent': 'Kaspa-Payments-Service/1.0',
           'Accept': 'application/json',
         },
-        timeout: 15000,
-      } as any);
+      });
 
       if (!response.ok) {
         return {
@@ -74,8 +72,7 @@ export class KaspaApiClient {
           'User-Agent': 'Kaspa-Payments-Service/1.0',
           'Accept': 'application/json',
         },
-        timeout: 15000,
-      } as any);
+      });
 
       if (!response.ok) {
         return null;
